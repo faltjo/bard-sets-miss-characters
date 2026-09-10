@@ -9,7 +9,7 @@
                     {{ if topics }}<span class="flex flex-wrap gap-x-3 gap-y-1">{{ topics }}<a href="{{ url }}" class="text-teal underline dark:text-teal-light">{{ title }}</a>{{ /topics }}</span>{{ /if }}
                 </div>
             </header>
-            <div class="prose max-w-[65ch] text-lg leading-[1.8] wrap-anywhere dark:text-gray-300">{{ content | widont }}</div>
+            <div class="prose max-w-[65ch] text-lg leading-[1.8] wrap-anywhere dark:text-gray-300">{{ content | bard_html | widont }}</div>
             <div class="my-14 flex justify-center text-teal dark:text-teal-light" aria-hidden="true">{{ svg src="/assets/site/end-mark.svg" class="h-8 w-12" }}</div>
         </article>
         {{ collection:articles :id:not="id" sort="date:desc" limit="2" as="other_articles" }}

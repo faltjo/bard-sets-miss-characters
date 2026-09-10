@@ -11,13 +11,21 @@ sections:
       -
         handle: content
         field:
-          type: markdown
+          type: bard
           display: Content
-          restrict: false
-          automatic_line_breaks: true
-          automatic_links: false
-          escape_markup: false
-          smartypants: false
+          remove_empty_nodes: true
+          sets:
+            main:
+              display: Main
+              sets:
+                card:
+                  display: Card
+                  fields:
+                    -
+                      handle: label
+                      field:
+                        type: text
+                        display: Label
       -
         handle: excerpt
         field:
