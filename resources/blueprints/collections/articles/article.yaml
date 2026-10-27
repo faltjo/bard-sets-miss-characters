@@ -1,48 +1,83 @@
 title: Article
-sections:
+tabs:
   main:
     display: Main
-    fields:
+    sections:
       -
-        handle: title
-        field:
-          type: text
-          display: Title
-      -
-        handle: content
-        field:
-          type: bard
-          display: Content
-          remove_empty_nodes: true
-          sets:
-            main:
-              display: Main
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              display: Title
+              validate:
+                - required
+          -
+            handle: content
+            field:
+              type: bard
+              display: Content
+              remove_empty_nodes: true
+              container: assets
               sets:
-                card:
-                  display: Card
-                  fields:
-                    -
-                      handle: label
-                      field:
-                        type: text
-                        display: Label
+                main:
+                  display: Main
+                  sets:
+                    card:
+                      display: Card
+                      fields:
+                        -
+                          handle: label
+                          field:
+                            type: text
+                            display: Label
+                    section:
+                      display: Section
+                      fields:
+                        -
+                          handle: sub_content
+                          field:
+                            container: assets
+                            remove_empty_nodes: false
+                            type: bard
+                            display: sub-content
+          -
+            handle: excerpt
+            field:
+              type: textarea
+              display: Excerpt
+              character_limit: 160
+          -
+            handle: author
+            field:
+              type: users
+              display: Author
+              default: current
+          -
+            handle: topics
+            field:
+              type: terms
+              display: Topics
+              taxonomies:
+                - topics
+              mode: select
+  sidebar:
+    display: Sidebar
+    sections:
       -
-        handle: excerpt
-        field:
-          type: textarea
-          display: Excerpt
-          character_limit: 160
-      -
-        handle: author
-        field:
-          type: users
-          display: Author
-          default: current
-      -
-        handle: topics
-        field:
-          type: terms
-          display: Topics
-          taxonomies:
-            - topics
-          mode: select
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: date
+            field:
+              type: date
+              required: true
+              default: now
+              validate:
+                - required
